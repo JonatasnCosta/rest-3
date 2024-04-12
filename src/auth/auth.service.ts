@@ -41,4 +41,7 @@ export class AuthService {
       return this.security.forget(user)
     };
     
+    async reset(password:string, token:string){
+       return this.security.reset(password, token)
+    };
 }
