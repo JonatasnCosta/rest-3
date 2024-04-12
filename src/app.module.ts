@@ -4,9 +4,11 @@ import { CreateUserModule } from './user/create-user/create-user.module';
 import { FindOneUserModule } from './user/find-one-user/find-one-user.module';
 import { CheckIdMiddleware } from './user/middlewares/check-id-middlware';
 import { AuthModule } from './auth/auth.module';
+import { SecurityModule } from './security/security.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module(
-{imports: [UserModule, CreateUserModule, FindOneUserModule, AuthModule], 
+{imports: [UserModule, CreateUserModule, FindOneUserModule, AuthModule, SecurityModule, ConfigModule.forRoot()], 
 controllers: [], 
 providers: [], 
 }) 
