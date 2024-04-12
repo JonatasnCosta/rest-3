@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common'; 
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common'; 
 import { UserModule } from './user/user.module';
 import { CreateUserModule } from './user/create-user/create-user.module';
 import { FindOneUserModule } from './user/find-one-user/find-one-user.module';
+import { CheckIdMiddleware } from './user/middlewares/check-id-middlware';
 
 @Module(
 {imports: [UserModule, CreateUserModule, FindOneUserModule], 
@@ -9,4 +10,11 @@ controllers: [],
 providers: [], 
 }) 
 
-export class AppModule {}
+export class AppModule implements NestModule {
+    configure(consumer: MiddlewareConsumer) {
+        consumer.apply(CheckIdMiddleware).forRoutes({
+            path:"users/:id",
+            method: RequestMethod.ALL
+        })
+    }
+}
