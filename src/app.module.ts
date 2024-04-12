@@ -3,9 +3,10 @@ import { UserModule } from './user/user.module';
 import { CreateUserModule } from './user/create-user/create-user.module';
 import { FindOneUserModule } from './user/find-one-user/find-one-user.module';
 import { CheckIdMiddleware } from './user/middlewares/check-id-middlware';
+import { AuthModule } from './auth/auth.module';
 
 @Module(
-{imports: [UserModule, CreateUserModule, FindOneUserModule], 
+{imports: [UserModule, CreateUserModule, FindOneUserModule, AuthModule], 
 controllers: [], 
 providers: [], 
 }) 
