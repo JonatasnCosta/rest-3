@@ -7,6 +7,7 @@ import { FindAllUsrsService } from './find-all-usrs/find-all-usrs.service';
 import { PartialUserService } from './partial-user/partial-user.service';
 import { UpdateUserService } from './update-user/update-user.service';
 import { RemoveUserService } from './remove-user/remove-user.service';
+import { PartialUserDto } from './dto/partial-user.dto';
 
 @Injectable()
 export class UserService {
@@ -35,7 +36,7 @@ export class UserService {
     return this.updateUser.updateUser(id, data)
   };
 
-  async partial(id: number, data: UpdateUserDto) {
+  async partial(id: number, data: PartialUserDto) {
     return this.partialUser.partialuser(id, data)
   };
 

@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateUserDto } from '../dto/update-user.dto';
+import { PartialUserDto } from '../dto/partial-user.dto';
 
 @Injectable()
 export class PartialUserService {
 
-    async partialuser(id:number, data: UpdateUserDto){
+    async partialuser(id:number, data: PartialUserDto){
         return {id, data}
     }
 }
