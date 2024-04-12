@@ -28,4 +28,17 @@ export class AuthService {
       }
       return this.security.createToken(user)
     };
+
+    async forget(email:string){
+      const user = await this.prisma.user.findFirst({
+        where:{
+          email
+        }
+      });
+      if (!user ) {
+        throw new UnauthorizedException("Email incorreto.")
+      }
+      return this.security.forget(user)
+    };
+    
 }

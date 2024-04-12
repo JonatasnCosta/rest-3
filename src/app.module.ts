@@ -6,9 +6,29 @@ import { CheckIdMiddleware } from './user/middlewares/check-id-middlware';
 import { AuthModule } from './auth/auth.module';
 import { SecurityModule } from './security/security.module';
 import { ConfigModule } from '@nestjs/config';
+import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module(
-{imports: [UserModule, CreateUserModule, FindOneUserModule, AuthModule, SecurityModule, ConfigModule.forRoot()], 
+{imports: [UserModule, CreateUserModule, FindOneUserModule,
+ AuthModule, SecurityModule, ConfigModule.forRoot(), MailerModule.forRoot({
+    transport:{ host: 'smtp.ethereal.email',
+    port: 587,
+    auth: {
+        user: 'alphonso.langosh3@ethereal.email',
+        pass: 'MJEXmTtsFvWFu6Dbpq'
+    }},
+    defaults: {
+      from: '"nest-modules" <modules@nestjs.com>',
+    },
+    template: {
+      dir: __dirname + '/templates',
+      adapter: new PugAdapter(),
+      options: {
+        strict: true,
+      },
+    },
+ })], 
 controllers: [], 
 providers: [], 
 }) 
